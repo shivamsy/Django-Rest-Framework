@@ -5,5 +5,5 @@ from . import views
 app_name='api'
 
 urlpatterns = [
-	path('', views.landing, name='landing'),
+	path('', views.ListCreateBook.as_view(), name='ListCreateBook'),
 	]
