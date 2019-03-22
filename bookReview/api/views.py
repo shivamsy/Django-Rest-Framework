@@ -10,9 +10,6 @@ from . import serializers
 
 # Create your views here.
 
-# def landing(request):
-# 	return HttpResponse('<h1>Hello</h1>')
-
 class ListCreateBook(APIView):
 	def get(self, request, format=None):
 		books = models.Book.objects.all()
