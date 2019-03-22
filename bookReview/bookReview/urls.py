@@ -26,6 +26,8 @@ router.register(r'reviews', views.ReviewViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls',
+    							namespace='rest_framework')),
     path('api/v1/books/', include('api.urls', namespace='api')),
     path('api/v2/books/', include('apiv2.urls', namespace='apiv2')),
     path('api/v3/', include(router.urls)),

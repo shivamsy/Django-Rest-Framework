@@ -5,8 +5,8 @@ from rest_framework import viewsets
 from rest_framework.decorators import detail_route
 from rest_framework.response import Response
 
-from . import models
-from . import serializers
+from api import models
+from api import serializers
 
 class ListCreateBook(generics.ListCreateAPIView):
 	queryset = models.Book.objects.all()
@@ -43,7 +43,15 @@ class BookViewSet(viewsets.ModelViewSet):
 
 	@detail_route(methods=['get'])
 	def reviews(self, request, pk=None):
-		book = self.get_object()
+		self.pagination_class.page_size = 5
+		reviews = models.Review.objects.filter(book_id=pk)
+
+		page = self.paginate_queryset(reviews)
+
+		if page is not None:
+			serializer = serializers.ReviewSerializer(page, many=True)
+			return self.get_paginated_response(serializer.data)
+
 		serializer = serializers.ReviewSerializer(
 				book.reviews.all(), many=True)
 		return Response(serializer.data)
