@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'api',
     'apiv2',
 ]
@@ -134,3 +135,4 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 5
 }
 
+#KEY = 60c3b3678ecc96076ea55ccfb802e27c12cd64e8
